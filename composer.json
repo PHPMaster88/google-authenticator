@@ -1,0 +1,31 @@
+{
+    "name": "phpmaster88/google-authenticator",
+    "description": "FREE PHP Google authenticator",
+    "keywords": ["php", "library", "authenticator", "google"],
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Senestro",
+            "email": "Senestro88@gmail.com",
+            "role": "developer"
+        }
+    ],
+    "support": {
+        "email": "Senestro88@gmail.com"
+    },
+    "require": {
+        "php": ">=8.0",
+        "chillerlan/php-qrcode": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "PHPMaster88\\authenticator\\": "src/"
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "config": {
+        "sort-packages": true
+    }
+}
