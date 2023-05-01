@@ -41,11 +41,13 @@ class QrCodeImage{
         // $qrOptions = new chillerlanQROptions(array('eccLevel' => chillerlanQRCode::ECC_Q, 'outputType' => chillerlanQRCode::OUTPUT_IMAGE_PNG, 'version' => 5));
         // return (new chillerlanQRCode)->render($otpauthString);
 
-        $currentPath = trim(rtrim(str_replace("\\", "/", realpath(dirname(__FILE__))), "/")); $prevPath = realpath($currentPath."\/../");
+        $currentPath = trim(rtrim(str_replace("\\", "/", realpath(dirname(__FILE__))), "/"));
         if(!defined('QR_MODE_NUL')){require_once $currentPath."/phpqrcode/qrlib.php";}
-        $tmpPath = $prevPath."/temp/"; if(!is_dir($tmpPath)){@mkdir($tmpPath, 0777, true);}
-        $Filename = $tmpPath.''.md5(time()).'.png';
-        touch($Filename);
+
+        $tmpPath = $currentPath."/temp/"; if(!is_dir($tmpPath)){@mkdir($tmpPath, 0777, true);}
+        clearstatcache(); sleep(1);
+
+        $Filename = $tmpPath.''.md5(time()).'.png'; if(!is_file($Filename)){@file_put_contents($Filename, "");}
         \QRcode::png($otpauthString, $Filename, QR_ECLEVEL_Q, 4, 2);
         try {
             clearstatcache();
